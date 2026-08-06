@@ -17,13 +17,27 @@ Rebuild Ivy Wallet as a React Native (Expo managed) mobile app with a three-tier
 
 ## Decisions so far
 
-_None yet — map just charted._
+1. **Layering**: Collapse into repositories. Stores call repos directly — no separate service layer. Services exist only for cross-cutting orchestration (e.g., balance across accounts).
+2. **Naming**: `TransactionRepository` (interface) with `SqliteTransactionRepository` as impl. No `I` prefix.
+3. **Return types**: Repositories return domain models (branded IDs, validated types). Mapping from raw DB records happens inside the repository implementation.
+4. **Error handling**: `RepositoryError` discriminated union with `kind` discriminator (`NotFound`, `ValidationFailed`, `ConstraintViolation`, `Unknown`).
+5. **DI**: Store factory functions. Repos are injected at creation time (e.g., `createTransactionStore(repo)`). App root wires them at startup.
+6. **Database**: expo-sqlite + Drizzle ORM instead of WatermelonDB. No server, no sync — reactive observe() is unused behind async-only repo interfaces. Drizzle gives standard SQL, better TS inference, lighter footprint, and easier web path.
+7. **Reactivity**: Async-only repositories (Promise-based). No observables. Stores re-fetch after mutations. No need for live subscriptions since all mutations go through stores.
+8. **Method granularity**: CRUD + entity-specific query methods per repository (not a query builder DSL). Methods like `findByAccountId` hide query implementation.
+9. **Repository organization**: Per-entity interfaces (~9 repos: Transaction, Account, Category, Budget, Loan, LoanRecord, PlannedPaymentRule, ExchangeRate, Tag).
+10. **Error shape**: Flat discriminated union `{ kind, entity, id, message }` with four variants: NotFound, ValidationFailed, ConstraintViolation, Unknown.
+11. **Transactions**: Repository owns write boundaries. Multi-table operations (transfers) use dedicated methods that wrap their own SQLite transaction internally.
+12. **Schema location**: Drizzle schemas live in `mobile/data/schema.ts`. Not in `core/`. The repository interface is the shared contract, not the schema.
+13. **DB wiring**: Repo factories accept the Drizzle `db` instance directly (`createSqliteTransactionRepo(db)`). No singletons, no providers.
+14. **Repository interface location**: `core/repositories/TransactionRepository.ts`. All interfaces together, separate from `core/models/`.
+15. **Pattern**: Confirmed. Stores are factory functions, repos are factory functions, db is wired at app root. Core has zero platform deps.
 
 ## Frontier (open tickets)
 
 | # | Ticket | Type | Blocked by | Status |
 |---|--------|------|------------|--------|
-| 1 | [Repository Interface Pattern](01-repository-interface-pattern.md) | grilling | — | unclaimed |
+| 1 | [Repository Interface Pattern](01-repository-interface-pattern.md) | grilling | — | resolved |
 | 2 | [Core Model Types & Zod Schemas](02-core-model-types.md) | task | — | unclaimed |
 | 5 | [Theme Token Extraction](05-theme-token-extraction.md) | research | — | unclaimed |
 
