@@ -10,7 +10,7 @@ Rebuild Ivy Wallet as a React Native (Expo managed) mobile app with a three-tier
 - **Skills to consult**: `codebase-design`, `tdd`, `domain-modeling`
 - **Repo**: Flat feature folder monorepo (no turborepo/nx). One package.
 - **Stack**: Expo managed, TypeScript strict, Zustand, Zod, neverthrow, date-fns, uuid
-- **Mobile**: react-native-paper (UI), WatermelonDB (DB), React Navigation
+- **Mobile**: react-native-paper (UI), expo-sqlite + Drizzle ORM (DB), React Navigation
 - **Web**: Deferred. UI lib and DB adapter chosen later. react-native-web may serve simple screens.
 - **Design source of truth**: Figma design system ([link](https://www.figma.com/file/kSwIa07jcHEHZXo6rzx7dn/Design-System))
 - **Original codebase**: [Ivy Wallet](https://github.com/Ivy-Apps/ivy-wallet) (archived, GPL-3.0)
@@ -38,15 +38,14 @@ Rebuild Ivy Wallet as a React Native (Expo managed) mobile app with a three-tier
 | # | Ticket | Type | Blocked by | Status |
 |---|--------|------|------------|--------|
 | 1 | [Repository Interface Pattern](01-repository-interface-pattern.md) | grilling | — | resolved |
-| 2 | [Core Model Types & Zod Schemas](02-core-model-types.md) | task | — | unclaimed |
+| 2 | [Core Model Types & Zod Schemas](02-core-model-types.md) | task | — | resolved |
+| 3 | [Zustand Store Pattern](03-zustand-store-pattern.md) | grilling | — | unclaimed |
+| 4 | [Project Scaffold](04-project-scaffold.md) | task | — | unclaimed |
 | 5 | [Theme Token Extraction](05-theme-token-extraction.md) | research | — | unclaimed |
 
 ### Blocked
 
-| # | Ticket | Type | Blocked by |
-|---|--------|------|------------|
-| 3 | [Zustand Store Pattern](03-zustand-store-pattern.md) | grilling | #1 |
-| 4 | [Project Scaffold](04-project-scaffold.md) | task | #1, #2 |
+*None — all blockers resolved.*
 
 ## Not yet specified
 
