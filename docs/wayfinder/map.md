@@ -51,7 +51,7 @@ Rebuild Ivy Wallet as a React Native (Expo managed) mobile app with a three-tier
 | 2 | [Core Model Types & Zod Schemas](02-core-model-types.md) | task | — | resolved |
 | 3 | [Zustand Store Pattern](03-zustand-store-pattern.md) | grilling | — | resolved |
 | 4 | [Project Scaffold](04-project-scaffold.md) | task | — | unclaimed |
-| 5 | [Theme Token Extraction](05-theme-token-extraction.md) | research | — | unclaimed |
+| 5 | [Theme Token Extraction](05-theme-token-extraction.md) | research | — | resolved |
 
 ### Blocked
 
