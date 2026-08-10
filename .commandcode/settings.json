@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": ["Shell(pnpm:*)", "Shell(npx tsc --noEmit 2>&1)"],
+    "deny": [],
+    "defaultMode": "default"
+  }
+}

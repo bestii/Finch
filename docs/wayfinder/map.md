@@ -42,20 +42,23 @@ Rebuild Ivy Wallet as a React Native (Expo managed) mobile app with a three-tier
 23. **Store scope**: Global (module-level). Single-user, single-DB app. Factory functions still allow test isolation.
 24. **Derived data**: Pure service functions in `core/services/`. e.g., `balanceService.calculateHomeData(transactions, accounts, plannedPayments, exchangeRates)`. Testable outside stores.
 25. **Screen consumption**: Single selectors — `useStore(s => ({ data: s.data, status: s.status }))`. Picks only needed fields, one subscription.
+26. **Path aliases**: `@core/*` → `src/core/*`. tsconfig paths + babel-plugin-module-resolver for Metro.
+27. **Testing**: Jest + React Native Testing Library (Expo default).
+28. **Pre-commit hooks**: Husky + lint-staged (Prettier, typecheck, tests).
 
 ## Frontier (open tickets)
 
-| # | Ticket | Type | Blocked by | Status |
-|---|--------|------|------------|--------|
-| 1 | [Repository Interface Pattern](01-repository-interface-pattern.md) | grilling | — | resolved |
-| 2 | [Core Model Types & Zod Schemas](02-core-model-types.md) | task | — | resolved |
-| 3 | [Zustand Store Pattern](03-zustand-store-pattern.md) | grilling | — | resolved |
-| 4 | [Project Scaffold](04-project-scaffold.md) | task | — | unclaimed |
-| 5 | [Theme Token Extraction](05-theme-token-extraction.md) | research | — | resolved |
+| #   | Ticket                                                             | Type     | Blocked by | Status   |
+| --- | ------------------------------------------------------------------ | -------- | ---------- | -------- |
+| 1   | [Repository Interface Pattern](01-repository-interface-pattern.md) | grilling | —          | resolved |
+| 2   | [Core Model Types & Zod Schemas](02-core-model-types.md)           | task     | —          | resolved |
+| 3   | [Zustand Store Pattern](03-zustand-store-pattern.md)               | grilling | —          | resolved |
+| 4   | [Project Scaffold](04-project-scaffold.md)                         | task     | —          | resolved |
+| 5   | [Theme Token Extraction](05-theme-token-extraction.md)             | research | —          | resolved |
 
 ### Blocked
 
-*None — all blockers resolved.*
+_None — all blockers resolved._
 
 ## Not yet specified
 
